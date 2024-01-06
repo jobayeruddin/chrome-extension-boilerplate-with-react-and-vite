@@ -1,0 +1,21 @@
+{
+  "name": "Vreact",
+  "description": "Boilerplate of Chrome Extension",
+  "version": "1.0",
+  "manifest_version": 3,
+  "action": {
+    "default_popup": "./index.html",
+    "default_title": "Let's start building great extensions",
+    "default_icon": {
+      "16": "./vite.png",
+      "32": "./vite.png",
+      "48": "./vite.png",
+      "128": "./vite.png"
+    }
+  },
+  "icons": {
+    "16": "./react.png",
+    "48": "./react.png",
+    "128": "./react.png"
+  }
+}
