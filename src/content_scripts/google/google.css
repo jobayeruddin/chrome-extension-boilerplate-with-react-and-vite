@@ -1,0 +1,46 @@
+.overlay {
+  background-color: #003638;
+  opacity: 0.4;
+  position: absolute;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 999;
+}
+.modal_body {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  top: 0px;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal {
+  border-radius: 12px;
+  padding: 18px 30px;
+  background-color: #042021;
+  color: #fff;
+  text-align: center;
+  width: 380px;
+}
+.color_green {
+  color: #2bf485;
+}
+.modal h1,
+.modal_close_btn {
+  font-family: Nunito, sans-serif !important;
+  margin-top: 18px;
+}
+.modal h1 {
+  margin-bottom: 20px;
+}
+.modal_close_btn {
+  background-color: #2bf485;
+  color: #042021;
+}
+
+.overflow_hidden {
+  overflow: hidden;
+}

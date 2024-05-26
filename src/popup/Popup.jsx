@@ -1,9 +1,8 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "./assets/vite.svg";
-import "./App.css";
+import reactLogo from "../assets/react.svg";
+import viteLogo from "../assets/vite.svg";
 
-function App() {
+function Popup() {
   const [coolness, setCoolness] = useState(false);
 
   return (
@@ -30,7 +29,14 @@ function App() {
       </h1>
       <div className="card">
         <button
-          onClick={() => setCoolness(true)}
+          onClick={() => {
+            setCoolness(true);
+            chrome.runtime.sendMessage({
+              message: "testMessage",
+              status: true,
+              forContentScript: true,
+            });
+          }}
           style={{
             backgroundColor: coolness ? "#2bf485" : "",
             boxShadow: coolness ? "0px 0px 20px 0px #2bf485" : "none",
@@ -74,4 +80,4 @@ function App() {
   );
 }
 
-export default App;
+export default Popup;

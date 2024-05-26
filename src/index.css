@@ -21,14 +21,6 @@ a:hover {
   color: #535bf2;
 }
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
 h1 {
   font-family: Nunito, sans-serif;
   font-size: 2.8em;
@@ -42,7 +34,8 @@ h5 {
   font-size: 12px;
 }
 
-button {
+button,
+.ext_btn {
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 8px 12px;

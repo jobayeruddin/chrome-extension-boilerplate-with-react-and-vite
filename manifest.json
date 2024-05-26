@@ -4,7 +4,7 @@
   "version": "1.0",
   "manifest_version": 3,
   "action": {
-    "default_popup": "./index.html",
+    "default_popup": "./src/popup/index.html",
     "default_title": "Let's start building great extensions",
     "default_icon": {
       "16": "./vite.png",
@@ -12,6 +12,9 @@
       "48": "./vite.png",
       "128": "./vite.png"
     }
+  },
+  "background": {
+    "service_worker": "./background.js"
   },
   "icons": {
     "16": "./react.png",
