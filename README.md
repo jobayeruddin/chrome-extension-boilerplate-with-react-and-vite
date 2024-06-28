@@ -19,6 +19,34 @@ This command will build the extension and save it to a directory named "dev". It
 
 You have to load the "dev" folder on Chrome.
 
+### Auto Reload
+
+**For development** the content-scripts aren't injecting through `manifest.json` instead there is a file named `dev_reloader.js` which is injecting all the content-scripts through service-worker.
+I had to take this weird way just to add the "Auto Reload" functionality.
+
+Now just serve a webSocket locally, which will send a message(`{ reloadStatus: true }`) to the `dev_reloader.js` and it will then reload the content-scripts so that you don't have to manually reload the extension everytime something is changed.
+
+Also you don't have to take the hassale of writing a web-socket server code. <br>
+I've added a boilerplate websocket server code in `webSocket.js` file. 😇
+
+**Here are the steps to start the server,** <br>
+
+1. Create a directory
+2. Run `npm init`
+3. Run `npm install chokidar ws`
+4. Add the `webSocket.js` file to the directory
+5. Add the extension directory path(with src) you're currently working on:
+
+```
+// Add Your Directory here
+let directoryToWatch = "./your-directory-to-watch/src";
+```
+
+6. Run `node webSocket.js`. <br>
+   The server should start on 8080 port.
+
+#### Note: There will be this error "Unrecognized manifest key 'dev_content_scripts' " while loading the extension on development . Don't worry about it. It won't harm anywhere also it won't go in the Production.
+
 ## For Production
 
 Run:

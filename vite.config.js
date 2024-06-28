@@ -3,6 +3,7 @@ import path from "path";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import PluginGenerateFile from "vite-plugin-generate-file";
+import { injectDevReloaderPlugin } from "./plugins/injectDevReloaderPlugin";
 
 let dirname = path.resolve(__dirname);
 
@@ -13,10 +14,8 @@ export default defineConfig(
 
     let { CSArray, inputEntries } =
       await generateContentScriptAndInputEntries();
-    manifest = { ...manifest, content_scripts: CSArray };
 
     let inputEntryKeys = Object.keys(inputEntries);
-    // console.log(inputEntries);
 
     let globalConfig = {
       base: "./",
@@ -25,13 +24,6 @@ export default defineConfig(
       cssCodeSplit: false,
       minify: false,
       rollupOptions: {
-        watch: {
-          // include: ["src/**", "src/background.js"],
-          chokidar: {
-            path: "src/background.js",
-          },
-        },
-
         input: {
           "src/popup/main": dirname + "/src/popup/index.html",
           background: dirname + "/src/background.js",
@@ -57,21 +49,23 @@ export default defineConfig(
 
     if (mode === "development") {
       // dev specific config
+      manifest = { ...manifest, dev_content_scripts: CSArray };
       manifest = { ...manifest, name: manifest.name + " (dev)" };
       build = { ...build, outDir: "dev" };
     } else if (mode === "production") {
       // build specific config
+      manifest = { ...manifest, content_scripts: CSArray };
       build = {
         ...build,
         outDir: "dist",
       };
     }
-    console.log("BUILD", build);
 
     return {
       ...globalConfig,
       build,
       plugins: [
+        injectDevReloaderPlugin({ include: "**/background.js" }),
         react(),
         PluginGenerateFile([
           {
@@ -79,11 +73,6 @@ export default defineConfig(
             output: "./manifest.json",
             data: manifest,
           },
-          // {
-          //   type: "template",
-          //   output: "./background.js",
-          //   template: "./src/background.js",
-          // },
         ]),
       ],
     };

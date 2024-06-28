@@ -16,6 +16,8 @@
   "background": {
     "service_worker": "./background.js"
   },
+  "permissions": ["scripting", "activeTab", "tabs"],
+  "host_permissions": ["*://*/*"],
   "icons": {
     "16": "./react.png",
     "48": "./react.png",

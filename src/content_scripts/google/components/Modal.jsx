@@ -6,6 +6,7 @@ function Modal() {
     if (message.message === "testMessage") {
       console.log(message.message);
     }
+    console.log(message);
   });
   useEffect(() => {
     if (modalVisible) {
